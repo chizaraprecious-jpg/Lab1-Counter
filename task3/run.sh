@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd task2
+cd task3
 
 #cleanup
 rm -rf obj_dir

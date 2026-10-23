@@ -31,7 +31,6 @@ int main(int argc, char **argv, char **en) {
         //inputs change BEFORE clock is toggled and i starts at 0
         //so i=n indicates the start of the (n+1)th cycle 
 
-        top->rst = (i < 2);
         top->en = vbdFlag();
 
         toggle_clk(top, tfp, i);    //function that dumps variables into VSC file and toggles clock
