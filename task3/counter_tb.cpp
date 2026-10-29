@@ -20,6 +20,7 @@ int main(int argc, char **argv, char **en) {
 
     //init Vbuddy
     if (init_vbd() == -1) return (-1);
+    set_mode1();
 
     //init simulation inputs
     top->clk = 1;
@@ -43,6 +44,6 @@ int main(int argc, char **argv, char **en) {
     }
 
     tfp->close();
-    vbdClose();
+    close_vbd();
     exit(0);
 }

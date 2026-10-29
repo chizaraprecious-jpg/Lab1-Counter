@@ -1,5 +1,4 @@
-#include "Vcounter.h"
-#include "verilated.h"
+#include "Vtop.h"
 #include "verilated_vcd_c.h"
 #include "vbuddy.cpp"
 
@@ -12,7 +11,7 @@ int init_vbd() {
     return 0;
 }
 
-void toggle_clk(Vcounter* top, VerilatedVcdC* tfp, int cycle) {
+void toggle_clk(Vtop* top, VerilatedVcdC* tfp, int cycle) {
     //clk is the module's clock signal
     for (int clk=0; clk<2; ++clk) { //executes twice for each i, dividing into half cycles
         tfp->dump(2*cycle+clk);     //records trace at time in parameter (unit = ps)
@@ -21,7 +20,7 @@ void toggle_clk(Vcounter* top, VerilatedVcdC* tfp, int cycle) {
     }
 }
 
-void send_vbd_bcd(Vcounter* top, int cycle) {
+void send_vbd_bcd(Vtop* top, int cycle) {
     //++++ send bcd value to Vbuddy (convert to hex)
     vbdHex(4, (int((top->bcd) >> 12) & 0xF)); 
 
@@ -34,4 +33,8 @@ void send_vbd_bcd(Vcounter* top, int cycle) {
     vbdHex(1, (int((top->bcd)) & 0xF));
 
     vbdCycle(cycle + 1); //increments Vbuddy cycle 
+}
+
+void close_vbd() {
+    vbdClose();
 }

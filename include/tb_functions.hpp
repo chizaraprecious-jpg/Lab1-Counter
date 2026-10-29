@@ -1,15 +1,17 @@
 #include "Vcounter.h"
-#include "verilated.h"
 #include "verilated_vcd_c.h"
 #include "vbuddy.cpp"
 
 int init_vbd() {
     //init Vbuddy
     if (vbdOpen() != 1) return (-1);
-    vbdSetMode(1);
     vbdHeader("Lab 1: Counter");
-
+    vbdSetMode(0);
     return 0;
+}
+
+void set_mode1() {
+    vbdSetMode(1);
 }
 
 void toggle_clk(Vcounter* top, VerilatedVcdC* tfp, int cycle) {
@@ -38,4 +40,8 @@ void send_vbd_count(Vcounter* top, int cycle) {
 void vbd_plot(Vcounter* top) {
     //++++ plot count value on Vbuddy TFT (y, min, max)
     vbdPlot(int(top->count), 0, 255);
+}
+
+void close_vbd() {
+    vbdClose();
 }

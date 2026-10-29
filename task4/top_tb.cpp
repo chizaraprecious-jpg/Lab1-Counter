@@ -1,4 +1,4 @@
-#include "Vcounter.h"
+#include "Vtop.h"
 #include "verilated.h"
 #include "verilated_vcd_c.h"
 #include "top_functions.hpp"
@@ -10,13 +10,13 @@ int main(int argc, char **argv, char **en) {
     Verilated::commandArgs(argc, argv);
 
     //init top verilog instance
-    Vcounter* top = new Vcounter;
+    Vtop* top = new Vtop;
 
     //init trace dump
     Verilated::traceEverOn(true);
     VerilatedVcdC* tfp = new VerilatedVcdC; //trace file pointer (for the trace dump)
     top->trace(tfp, 99);
-    tfp->open("counter.vcd");
+    tfp->open("top.vcd");
 
     //init Vbuddy
     if (init_vbd() == -1) return (-1);
@@ -43,6 +43,6 @@ int main(int argc, char **argv, char **en) {
     }
 
     tfp->close();
-    vbdClose();
+    close_vbd();
     exit(0);
 }

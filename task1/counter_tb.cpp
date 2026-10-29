@@ -1,7 +1,7 @@
 #include "Vcounter.h"
 #include "verilated.h"
 #include "verilated_vcd_c.h"
-#include "plot_cycle.hpp"
+#include "tb_functions.hpp"
 
 int main(int argc, char **argv, char **en) {
     int i; //counts the number of clock cycles
@@ -31,9 +31,10 @@ int main(int argc, char **argv, char **en) {
         top->rst = (i > 4) && (i % 4 == 1);          //after the 5th cycle, reset is activated every four cycles
         top->en = (i<20);
 
-        plot_cycle(top, tfp, i);                      //function that dumps variables into VSC file and toggles clock
+        toggle_clk(top, tfp, i);                      //function that dumps variables into VSC file and toggles clock
     }
 
     tfp->close();
+    close_vbd();
     exit(0);
 }

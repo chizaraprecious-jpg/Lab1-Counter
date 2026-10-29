@@ -24,7 +24,6 @@ int main(int argc, char **argv, char **en) {
     //init simulation inputs
     top->clk = 1;
     top->rst = 0;  //immediately starts counting from 0
-    top->en = 1;
 
     //run simulation for 300 clock cycles
     for (i=0; i<20; ++i) {
@@ -40,6 +39,6 @@ int main(int argc, char **argv, char **en) {
     }
 
     tfp->close();
-    vbdClose();
+    close_vbd();
     exit(0);
 }
