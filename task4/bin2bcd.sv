@@ -12,11 +12,11 @@
 
 
 module bin2bcd (
-	input  logic [7:0]   x,			// value ot be converted
+	input  logic [7:0]   x,			// value to be converted
 	output logic [11:0]  BCD     // BCD digits
 );	
 	 // Concatenation of input and output
-   logic  [19:0] result;  // no of bits = no_of_bit of x + 4* no of digits
+   logic  [19:0] result;  // no of bits = no_of_bits of x + 4* no of digits
    integer i;
    
    always_comb
@@ -27,14 +27,14 @@ module bin2bcd (
       for (i=0; i<8; i=i+1) begin
 			// Check if unit digit >= 5
          if (result[11:8] >= 5)
-            result[11:8] = result[11:8] + 4'd3;
+            result[11:8] = result[11:8] + 4'd3; //add 3
 				
          // Check if ten digit >= 5
          if (result[15:12] >= 5)
-            result[15:12] = result[15:12] + 4'd3;
+            result[15:12] = result[15:12] + 4'd3; //add 3
 
 			// Shift everything left
-         result = result << 1;
+         result = result << 1; //move into result region
       end
       
       // Decode output from result

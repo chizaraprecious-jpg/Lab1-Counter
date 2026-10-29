@@ -5,11 +5,11 @@ module counter #(
     input logic clk,           //clock signal
     input logic rst,           //reset
     input logic ld,            //load counter from data
-    input logic [WIDTH-1:0] v  //value to preload
+    input logic [WIDTH-1:0] v,  //value to preload
     output logic [WIDTH-1:0] count //count output
 );
 
 always_ff @ (posedge clk, posedge rst)
-    if (rst) count <= {WIDTH{1'b0}};
-    else count <= ld ? v : count + {{WIDTH-1{1'b0}}, 1'b1};
+    if (rst) count <= v;
+    else if (ld) count <= count + {{WIDTH-1{1'b0}}, 1'b1};
 endmodule

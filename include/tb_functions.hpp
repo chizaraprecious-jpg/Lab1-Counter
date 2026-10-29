@@ -6,6 +6,7 @@
 int init_vbd() {
     //init Vbuddy
     if (vbdOpen() != 1) return (-1);
+    vbdSetMode(1);
     vbdHeader("Lab 1: Counter");
 
     return 0;
